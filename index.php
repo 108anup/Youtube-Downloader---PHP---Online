@@ -31,7 +31,9 @@
 
 			foreach ($videos as $video){
 				parse_str($video,$video_array);
-				$parsedtype = strstr($video_array['type'],';',true);
+				if($video_array['type']!="video/x-flv")
+					$parsedtype = strstr($video_array['type'],';',true);
+				else $parsedtype = $video_array['type'];
 				echo "Type: {$parsedtype}<br>Qualtiy = {$video_array['quality']}<br><a href=\"{$video_array['url']}\" download=\"{$title}_{$parsedtype}_{$video_array['quality']}\">{$title}_{$parsedtype}_{$video_array['quality']}</a>";
 				echo "<br><br>";
 			}
